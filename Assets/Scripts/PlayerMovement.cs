@@ -33,9 +33,9 @@ public class PlayerMovement : NetworkBehaviour
     {
         float movement = input * movementSpeed * Time.deltaTime;
 
-        Vector3 direction = new Vector3(movement, 0, 0);
+        //Vector3 direction = new Vector3(0, 0, movement);
 
-        m_Rigigbody.MovePosition(m_Rigigbody.position + direction);
+        m_Rigigbody.velocity = transform.forward * movement;
     }
 
     void Rotation(float input)
