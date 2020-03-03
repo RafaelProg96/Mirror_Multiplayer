@@ -1,39 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+//using Mirror;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement : NetworkBehaviour
+public class PlayerMovement : MonoBehaviour //NetworkBehaviour
 {
     private Rigidbody m_Rigigbody;
 
-    public float movementSpeed = 20f;
-    public float turnSpeed = 5.5f;
+    public float movementSpeed = 20f;   //Velocidade de movimento
+    public float turnSpeed = 5.5f;      //Velocidade de rotação
 
     private void Awake()
     {
+        //Acessa o componente Rigidbody e armazena-o na referência "m_Rigidbody"
         m_Rigigbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        //Verifica se este script está sendo executado no player do mesmo cliente
-        if (isLocalPlayer)
-        {
-            float v = Input.GetAxis("Vertical");
-            float h = Input.GetAxis("Horizontal");
+        //if(isLocalPlayer)
+        
+        //Lê os valores de input dos eixos y e x, respectivamente
+        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
 
-            Movement(v);
-            Rotation(h);
-        }
+        Movement(v);
+        Rotation(h);
     }
 
     void Movement(float input)
     {
         float movement = input * movementSpeed * Time.deltaTime;
-
-        //Vector3 direction = new Vector3(0, 0, movement);
 
         m_Rigigbody.velocity = transform.forward * movement;
     }
