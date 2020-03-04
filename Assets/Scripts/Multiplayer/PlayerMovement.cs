@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using Mirror;
+using Mirror;   //Biblioteca da solução Mirror
 
 namespace Prototipo.Multiplayer
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class PlayerMovement : NetworkBehaviour
+    public class PlayerMovement : NetworkBehaviour //Componentes utilizados na rede devem herdar de NetworkBehaviour, onde se encontrar as variáveis e CallBacks
     {
         private Rigidbody m_Rigigbody;
 
         public float movementSpeed = 15.5f;   //Velocidade de movimento
-        public float turnSpeed = 5.5f;      //Velocidade de rotação
+        public float turnSpeed = 5.5f;        //Velocidade de rotação
 
         private void Awake()
         {
