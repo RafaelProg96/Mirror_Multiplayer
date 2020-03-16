@@ -11,7 +11,7 @@ namespace Prototipo.Multiplayer
 
         private void Start()
         {
-            //spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+            spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         }
 
         private void Update()

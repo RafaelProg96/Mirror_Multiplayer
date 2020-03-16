@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 2387756350970121217}
   - component: {fileID: 8658404787477754976}
   - component: {fileID: 7190936923335470788}
-  - component: {fileID: 2588411924768109022}
   - component: {fileID: 822331662366032855}
+  - component: {fileID: 1185573121425985298}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 3276003269
+  sceneId: 1990618129
   serverOnly: 0
   m_AssetId: 
 --- !u!114 &7190936923335470788
@@ -146,20 +146,6 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   compressRotation: 1
---- !u!114 &2588411924768109022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9191330865074343288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f83c33f0bb91690468e35400854336b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
 --- !u!114 &822331662366032855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +162,18 @@ MonoBehaviour:
   syncInterval: 0.1
   movementSpeed: 200
   turnSpeed: 50
+--- !u!114 &1185573121425985298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9191330865074343288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c614191384f8b1479ec65f688dcf04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  projectilePrefab: {fileID: 0}
