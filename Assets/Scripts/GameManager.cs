@@ -1,20 +1,88 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
+using Prototipo.Multiplayer;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkManager
 {
-    private PlayerMovement m_PlayerMovement;
+    public List<PlayerController> players = new List<PlayerController>();
 
-    public GameObject m_Player;
+    public static GameManager instance;
 
-    private void Awake()
+    public override void Awake()
     {
-        m_PlayerMovement = m_Player.GetComponent<PlayerMovement>();
+        base.Awake();
+
+        if (instance == null && instance != this)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void Start()
+    public void AddPlayer(PlayerController playerCon)
     {
-        Debug.Log("Velocidade do jogador: " + m_PlayerMovement.movementSpeed);
+        players.Add(playerCon);
+    }
+
+    public void RemovePlayer(PlayerController playerCon)
+    {
+        players.Remove(playerCon);
+    }
+
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
+
+        Debug.Log("OnClientConnect");
+
+        Debug.Log(conn.identity.gameObject.name);
+
+        var playerController = conn.identity.gameObject.GetComponent<PlayerController>();
+
+        AddPlayer(playerController);
+    }
+
+    public override void OnServerDisconnect(NetworkConnection conn)
+    {
+        Debug.Log("OnServerDisconnect");
+
+        Debug.Log(conn.identity.gameObject.name);
+
+        var playerController = conn.identity.gameObject.GetComponent<PlayerController>();
+
+        RemovePlayer(playerController);
+
+        base.OnServerDisconnect(conn);
     }
 }
+/*
+ * public List<PlayerController> players = new List<PlayerController>();
+
+    public static GameManager instance;
+
+    public void Awake()
+    {
+        //base.Awake();
+
+        if (instance == null && instance != this)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void AddPlayer(PlayerController playerCon)
+    {
+        players.Add(playerCon);
+    }
+*/
