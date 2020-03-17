@@ -1,30 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Prototipo;
 using Mirror;
 
 public class PlayerController : NetworkBehaviour
 {
-	public override void OnStartClient()
-	{
-		base.OnStartClient();
+    [SerializeField]
+    private GameObject cameraPrefab;
+    [SerializeField]
+    private CameraController playerCamera;
+    [SerializeField]
+    private Transform cameraPosition;
 
-		Prototipo.NetworkManagerLobby.AddPlayer(this);
-	}
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
 
-	private void OnEnable()
-	{
-		Prototipo.NetworkManagerLobby.OnClientConnected += DisplayConnectedPlayer;
-	}
+        Debug.Log("OnStartClient");
+
+        NetworkManagerLobby.AddPlayer(this);        
+    }
+
+    private void Start()
+    {
+        if (!isLocalPlayer)
+            return;
+
+        SetupCamera();
+    }
+
+    void SetupCamera()
+    {
+        var camera = Instantiate(cameraPrefab, cameraPosition);
+
+        camera.transform.rotation = cameraPosition.rotation;
+
+        camera.GetComponent<Camera>().tag = "MainCamera";
+
+        playerCamera = camera.GetComponent<CameraController>();
+
+        playerCamera.Owner = this;
+    }
 
 	void DisplayConnectedPlayer()
 	{
-		Debug.Log(this.gameObject.name);
-	}
-
-	private void OnDisable()
-	{
-		Prototipo.NetworkManagerLobby.OnClientConnected -= DisplayConnectedPlayer;
-	}
+		Debug.Log(gameObject.name);
+	}	
 }

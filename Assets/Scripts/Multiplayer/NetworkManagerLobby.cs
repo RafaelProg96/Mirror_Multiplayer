@@ -51,8 +51,6 @@ namespace Prototipo
 
 		public override void OnServerAddPlayer(NetworkConnection conn)
 		{
-			//base.OnServerAddPlayer(conn);
-
 			if(SceneManager.GetActiveScene().name == menuScene)
 			{
 				NetworkLobbyPlayer networkLobbyPlayer = Instantiate(lobbyPlayerPrefab);

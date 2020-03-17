@@ -6,7 +6,7 @@ namespace Prototipo.Multiplayer
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovement : NetworkBehaviour //Componentes utilizados na rede devem herdar de NetworkBehaviour, onde se encontrar as variáveis e CallBacks
     {
-        private Rigidbody m_Rigigbody;
+        private Rigidbody m_Rigigbody;        
 
         public float movementSpeed = 15.5f;   //Velocidade de movimento
         public float turnSpeed = 5.5f;        //Velocidade de rotação
@@ -14,7 +14,7 @@ namespace Prototipo.Multiplayer
         private void Awake()
         {
             //Acessa o componente Rigidbody e armazena-o na referência "m_Rigidbody"
-            m_Rigigbody = GetComponent<Rigidbody>();
+            m_Rigigbody = GetComponent<Rigidbody>();            
         }
 
         private void Update()
@@ -45,6 +45,6 @@ namespace Prototipo.Multiplayer
             Quaternion rotation = Quaternion.Euler(0, rotationValue, 0);
 
             m_Rigigbody.MoveRotation(m_Rigigbody.rotation * rotation);
-        }
+        }       
     }
 }

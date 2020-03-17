@@ -18,5 +18,5 @@ public class MainMenu : MonoBehaviour
 		lobbyManager.StartHost();
 
 		connectionPanel.SetActive(false);
-	}
+	}    
 }
