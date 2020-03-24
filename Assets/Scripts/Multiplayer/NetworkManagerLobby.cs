@@ -49,6 +49,15 @@ namespace Prototipo
 			}
 		}
 
+		public override void OnServerConnect(NetworkConnection conn)
+		{
+			if(numPlayers >= maxConnections)
+			{
+				conn.Disconnect();
+				return;
+			}
+		}
+
 		public override void OnServerAddPlayer(NetworkConnection conn)
 		{
 			//base.OnServerAddPlayer(conn);
