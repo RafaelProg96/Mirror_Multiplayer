@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcb4f7f21632b448837da641f061dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShellParent: {fileID: 1400966873}
+  m_SpawnManager: {fileID: 1400966874}
 --- !u!4 &384682723
 Transform:
   m_ObjectHideFlags: 0
@@ -390,6 +390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1400966873}
+  - component: {fileID: 1400966874}
   m_Layer: 0
   m_Name: ShellPool
   m_TagString: Untagged
@@ -411,6 +412,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1400966874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400966872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d83f5820f53e14fb5ba2393c771fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolSize: 4
+  m_Prefab: {fileID: 986109998243220333, guid: 07b840853be099943bba868f8f6687c6, type: 3}
+  m_Pool: []
+  poolTransform: {fileID: 1400966873}
 --- !u!1 &1403049221
 GameObject:
   m_ObjectHideFlags: 0

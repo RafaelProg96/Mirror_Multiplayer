@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 
 public class GameController : MonoBehaviour
-{
+{	
 	[SerializeField]
-	private Transform m_ShellParent;
+	private SpawnManager m_SpawnManager;
 
-	public static GameController singleton { get; private set; }
+	public static GameController singleton { get; private set; }	
 
-	public Transform ShellParent
+	public SpawnManager SpawnManager
 	{
-		get { return m_ShellParent; }
+		get
+		{
+			return m_SpawnManager;
+		}
 	}
+
 
 	private void Awake()
 	{
