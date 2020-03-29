@@ -15,17 +15,10 @@ public class PlayerShooting : NetworkBehaviour
 
 	private void Awake()
 	{
-		shellPool = new Rigidbody[maxAmmunition];		
+		shellPool = new Rigidbody[maxAmmunition];
 
-		spawnManager = GameController.singleton.SpawnManager;
-	}
-
-	public override void OnStartLocalPlayer()
-	{
-		base.OnStartLocalPlayer();
-
-		//ObjectPoolSetup();
-	}
+		spawnManager = GetComponent<SpawnManager>();
+	}	
 
 	private void Update()
 	{
@@ -51,10 +44,15 @@ public class PlayerShooting : NetworkBehaviour
 
 		if (shellScript != null)
 		{
-			shellScript.FireShell();
-		}
+			shellScript.FireShell(this);
+		}		
+	}
 
-		StartCoroutine(DisableObject(shell, 5f));
+	public void ReturnToPool(GameObject go)
+	{
+		spawnManager.UnSpawnObject(go);
+
+		NetworkServer.UnSpawn(go);
 	}
 
 	private IEnumerator DisableObject(GameObject go, float timer)
@@ -64,17 +62,5 @@ public class PlayerShooting : NetworkBehaviour
 		spawnManager.UnSpawnObject(go);
 
 		NetworkServer.UnSpawn(go);
-	}
-
-	private void ObjectPoolSetup()
-	{
-		for (int i = 0; i < shellPool.Length; i++)
-		{
-			var shell = Instantiate(m_ShellPrefab, spawnManager.poolTransform);
-
-			shellPool[i] = shell.GetComponent<Rigidbody>();
-
-			shellPool[i].gameObject.SetActive(false);
-		}
-	}
+	}	
 }

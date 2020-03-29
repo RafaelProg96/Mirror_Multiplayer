@@ -13,23 +13,36 @@ public class Shell : NetworkBehaviour
 	private float m_ShellDamage = 40;
 	[SerializeField]
 	private float m_ExplosionRange = 5.5f;
+	[SerializeField]
+	private PlayerShooting owner;
 
 	private void Awake()
 	{
 		m_Rigidbody = GetComponent<Rigidbody>();
 	}
 
-	public void FireShell()
+	public void FireShell(PlayerShooting player)
 	{
 		m_Rigidbody.velocity = transform.forward * m_ShellSpeed;
+
+		owner = player;
 	}
 
 	private void ShellDeactivation()
 	{
 		gameObject.SetActive(false);
 
-		transform.position = Vector3.zero;
+		//transform.position = Vector3.zero;
+		transform.rotation = Quaternion.identity;
 		m_Rigidbody.velocity = Vector3.zero;
-		m_Rigidbody.Sleep();
+
+		owner = null;
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		owner.ReturnToPool(gameObject);
+
+		ShellDeactivation();
 	}
 }

@@ -1,20 +1,8 @@
 ﻿using UnityEngine;
 
 public class GameController : MonoBehaviour
-{	
-	[SerializeField]
-	private SpawnManager m_SpawnManager;
-
+{		
 	public static GameController singleton { get; private set; }	
-
-	public SpawnManager SpawnManager
-	{
-		get
-		{
-			return m_SpawnManager;
-		}
-	}
-
 
 	private void Awake()
 	{

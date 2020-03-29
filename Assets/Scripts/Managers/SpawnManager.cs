@@ -16,9 +16,7 @@ public class SpawnManager : MonoBehaviour
 
 	public delegate GameObject SpawnDelegate(Vector3 position, System.Guid assetId);
 
-	public delegate void UnSpawnDelegate(GameObject spawnedObject);
-
-	public Transform poolTransform;
+	public delegate void UnSpawnDelegate(GameObject spawnedObject);	
 
 	private void Start()
 	{
@@ -27,7 +25,7 @@ public class SpawnManager : MonoBehaviour
 
 		for (int i = 0; i < m_poolSize; i++)
 		{
-			m_Pool[i] = Instantiate(m_Prefab, poolTransform);
+			m_Pool[i] = Instantiate(m_Prefab);
 			m_Pool[i].name = m_Prefab.name + i;
 			m_Pool[i].SetActive(false);
 		}

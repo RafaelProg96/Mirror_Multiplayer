@@ -76,9 +76,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 1162844563
+  sceneId: 0
   serverOnly: 0
-  m_AssetId: 
+  m_AssetId: 07b840853be099943bba868f8f6687c6
 --- !u!114 &1930664678280351063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,9 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  m_ShellSpeed: 10
+  m_ShellSpeed: 18.75
   m_ShellDamage: 40
   m_ExplosionRange: 5.5
+  owner: {fileID: 0}
 --- !u!1 &986109999495743180
 GameObject:
   m_ObjectHideFlags: 0
