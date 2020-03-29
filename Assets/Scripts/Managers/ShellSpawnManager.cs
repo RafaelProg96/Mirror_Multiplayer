@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class SpawnManager : MonoBehaviour
+public class ShellSpawnManager : NetworkBehaviour
 {
 	[SerializeField]
 	private int m_poolSize = 4;
 	[SerializeField]
-	private GameObject m_Prefab = null;
-	[SerializeField]
-	private GameObject[] m_Pool = null;
+	private GameObject m_Prefab = null;	
+
+	//---
+	
+	public GameObject[] m_Pool { get; private set; }
 
 	public System.Guid assetId { get; set; }
 
@@ -27,6 +29,14 @@ public class SpawnManager : MonoBehaviour
 		{
 			m_Pool[i] = Instantiate(m_Prefab);
 			m_Pool[i].name = m_Prefab.name + i;
+
+			var shell = m_Pool[i].GetComponent<Shell>();
+
+			if(shell != null)
+			{
+				shell.SpawnManager = this;
+			}
+
 			m_Pool[i].SetActive(false);
 		}
 
@@ -57,5 +67,17 @@ public class SpawnManager : MonoBehaviour
 	public void UnSpawnObject(GameObject spawnedObject)
 	{
 		spawnedObject.SetActive(false);
+
+		NetworkServer.UnSpawn(spawnedObject);
+	}
+
+	void OnDestroy()
+	{
+		for (int i = 0; i < m_Pool.Length; i++)
+		{
+			var obj = m_Pool[i].gameObject;
+			m_Pool[i] = null;
+			NetworkServer.Destroy(obj);
+		}		
 	}
 }

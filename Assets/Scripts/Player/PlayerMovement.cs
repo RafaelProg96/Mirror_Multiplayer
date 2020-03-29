@@ -2,12 +2,13 @@
 using Mirror;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(NetworkTransform))]
 public class PlayerMovement : NetworkBehaviour //Componentes utilizados na rede devem herdar de NetworkBehaviour, onde se encontrar as variáveis e CallBacks
 {
 	private Rigidbody m_Rigigbody;
 
-	public float movementSpeed = 20;   //Velocidade de movimento
-	public float turnSpeed = 6.5f;        //Velocidade de rotação
+	public float movementSpeed = 8.5f;   //Velocidade de movimento
+	public float turnSpeed = 18.75f;        //Velocidade de rotação
 
 	private float horizontalInput = 0f;
 	private float verticalInput = 0f;
@@ -52,5 +53,15 @@ public class PlayerMovement : NetworkBehaviour //Componentes utilizados na rede 
 		Quaternion rotation = Quaternion.Euler(0, rotationValue, 0);
 
 		m_Rigigbody.MoveRotation(m_Rigigbody.rotation * rotation);
+	}
+
+	private void OnDisable()
+	{
+		DisableMovement();
+	}
+
+	public void DisableMovement()
+	{
+		m_Rigigbody.velocity = Vector3.zero;
 	}
 }

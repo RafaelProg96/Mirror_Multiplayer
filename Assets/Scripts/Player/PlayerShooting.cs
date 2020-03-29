@@ -11,13 +11,13 @@ public class PlayerShooting : NetworkBehaviour
 	private int currentAmmunition;
 
 	private Rigidbody[] shellPool;	
-	private SpawnManager spawnManager;
+	private ShellSpawnManager spawnManager;
 
 	private void Awake()
 	{
 		shellPool = new Rigidbody[maxAmmunition];
 
-		spawnManager = GetComponent<SpawnManager>();
+		spawnManager = GetComponent<ShellSpawnManager>();
 	}	
 
 	private void Update()
@@ -44,23 +44,7 @@ public class PlayerShooting : NetworkBehaviour
 
 		if (shellScript != null)
 		{
-			shellScript.FireShell(this);
+			shellScript.FireShell();
 		}		
-	}
-
-	public void ReturnToPool(GameObject go)
-	{
-		spawnManager.UnSpawnObject(go);
-
-		NetworkServer.UnSpawn(go);
-	}
-
-	private IEnumerator DisableObject(GameObject go, float timer)
-	{
-		yield return new WaitForSeconds(timer);
-
-		spawnManager.UnSpawnObject(go);
-
-		NetworkServer.UnSpawn(go);
 	}	
 }

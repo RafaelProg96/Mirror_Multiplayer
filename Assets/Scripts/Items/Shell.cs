@@ -4,44 +4,60 @@ using UnityEngine;
 using Mirror;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(NetworkTransform))]
 public class Shell : NetworkBehaviour
 {
 	private Rigidbody m_Rigidbody;
 	[SerializeField]
 	private float m_ShellSpeed = 100;
 	[SerializeField]
-	private float m_ShellDamage = 40;
+	private float m_ShellDamage = 35;
 	[SerializeField]
 	private float m_ExplosionRange = 5.5f;
 	[SerializeField]
-	private PlayerShooting owner;
+	private ShellSpawnManager m_SpawnManager;
+
+	public ShellSpawnManager SpawnManager
+	{
+		get
+		{
+			return m_SpawnManager;
+		}
+		set
+		{
+			m_SpawnManager = value;
+		}
+	}
 
 	private void Awake()
 	{
 		m_Rigidbody = GetComponent<Rigidbody>();
 	}
 
-	public void FireShell(PlayerShooting player)
+	public void FireShell()
 	{
-		m_Rigidbody.velocity = transform.forward * m_ShellSpeed;
-
-		owner = player;
+		m_Rigidbody.velocity = transform.forward * m_ShellSpeed;		
 	}
 
 	private void ShellDeactivation()
 	{
 		gameObject.SetActive(false);
-
-		//transform.position = Vector3.zero;
+		
 		transform.rotation = Quaternion.identity;
-		m_Rigidbody.velocity = Vector3.zero;
 
-		owner = null;
+		m_Rigidbody.velocity = Vector3.zero;		
 	}
 
-	private void OnCollisionEnter(Collision collision)
+	private void OnTriggerEnter(Collider other)
 	{
-		owner.ReturnToPool(gameObject);
+		var health = other.GetComponent<PlayerHealth>();
+
+		if(health != null)
+		{
+			health.TakeDamage(m_ShellDamage);
+		}
+
+		m_SpawnManager.UnSpawnObject(gameObject);
 
 		ShellDeactivation();
 	}

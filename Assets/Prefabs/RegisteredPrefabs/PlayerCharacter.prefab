@@ -42,7 +42,9 @@ GameObject:
   - component: {fileID: 6079412361182694261}
   - component: {fileID: 5011203368217830537}
   - component: {fileID: 1472298186017469693}
+  - component: {fileID: 5457975885255498288}
   - component: {fileID: 5973628680113969243}
+  - component: {fileID: -7331801166982666645}
   - component: {fileID: -1465206915231707245}
   - component: {fileID: -618830502277475463}
   m_Layer: 0
@@ -112,6 +114,25 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   m_AssetId: 650b02d4e13b435479cecac5b1410403
+--- !u!114 &5457975885255498288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2582459304042259575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  compressRotation: 1
 --- !u!114 &5973628680113969243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,8 +147,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  movementSpeed: 16.75
-  turnSpeed: 12.45
+  movementSpeed: 8.5
+  turnSpeed: 18.75
+--- !u!114 &-7331801166982666645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2582459304042259575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d9745ecb22df44e90c529e5c242685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  m_MaxHealth: 100
+  m_CurrentHealth: 0
 --- !u!114 &-1465206915231707245
 MonoBehaviour:
   m_ObjectHideFlags: 0
